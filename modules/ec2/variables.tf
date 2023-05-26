@@ -1,0 +1,9 @@
+variable "project" {}
+variable "region" {}
+variable "ami" {}
+variable "instance_type" {}
+variable "name" {}
+variable "keypair-name" {}
+variable "authorized-ssh-ip" {}
+variable "vpc-id" {}
+variable "public-subnet_id" {}
