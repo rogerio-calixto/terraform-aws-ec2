@@ -1,12 +1,12 @@
 
 provider "aws" {
-  region  = var.aws_region
+  region  = var.region
   profile = local.aws_profile
 }
 
 module "network" {
-  source      = "./modules/network"
-  project     = local.project
+  source  = "./modules/network"
+  project = local.project
 }
 
 module "ec2" {
@@ -14,10 +14,10 @@ module "ec2" {
   project           = local.project
   region            = var.region
   ami               = var.ami
-  instance_type     = var.instance_type
-  name              = var.name
+  instance-type     = var.instance-type
+  instance-name     = var.instance-name
   keypair-name      = var.keypair-name
   authorized-ssh-ip = var.authorized-ssh-ip
-  vpc-id            = module.network.vpc_id
+  vpc-id            = module.network.vpc-id
   public-subnet_id  = module.network.public-subnet_id
 }

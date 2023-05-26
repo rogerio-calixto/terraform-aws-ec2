@@ -1,14 +1,14 @@
 resource "aws_security_group" "main-sg" {
   name        = "${var.project}-main-sg"
   description = "Enable Inbound ports"
-  vpc_id      = var.vpc_id
+  vpc_id      = var.vpc-id
 
   ingress {
     description = "Enable SSH access"
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["${var.authorized-ssh-ip}"]
+    cidr_blocks = ["${var.authorized-ssh-ip}/32"]
   }
 
   ingress {
@@ -27,22 +27,22 @@ resource "aws_security_group" "main-sg" {
   }
 
   tags = {
-    Name        = "${var.project}-main-sg"
-    Project     = var.project
+    Name    = "${var.project}-main-sg"
+    Project = var.project
   }
 }
 
 
 resource "aws_instance" "main-ec2" {
   ami                         = var.ami
-  instance_type               = var.instance_type
+  instance_type               = var.instance-type
   subnet_id                   = var.public-subnet_id
   vpc_security_group_ids      = [aws_security_group.main-sg.id]
   associate_public_ip_address = true
   key_name                    = var.keypair-name
   tags = {
-    Name        = var.name
-    Project     = var.project
+    Name    = var.instance-name
+    Project = var.project
   }
 
   # EBS root

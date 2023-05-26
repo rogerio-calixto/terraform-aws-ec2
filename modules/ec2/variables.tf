@@ -1,8 +1,8 @@
 variable "project" {}
 variable "region" {}
 variable "ami" {}
-variable "instance_type" {}
-variable "name" {}
+variable "instance-type" {}
+variable "instance-name" {}
 variable "keypair-name" {}
 variable "authorized-ssh-ip" {}
 variable "vpc-id" {}

@@ -6,18 +6,14 @@ variable "ami" {
   default = "ami-0715c1897453cabd1"
 }
 
-variable "instance_type" {
-  default = "t3-micro"
-}
-
-variable "name" {
-  default = "main-ec2"
+variable "instance-type" {
+  default = "t3.micro"
 }
 
 variable "keypair-name" {
-  default = ""
+  default  = "devops-keypair"
 }
 
-variable "authorized-ssh-ip" {
+variable "instance-name" {}
 
-}
+variable "authorized-ssh-ip" {}
