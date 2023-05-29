@@ -14,6 +14,8 @@ variable "keypair-name" {
   default  = "devops-keypair"
 }
 
-variable "instance-name" {}
+variable "instance-name" {
+  default  = "devops-portfolio-instance"
+}
 
 variable "authorized-ssh-ip" {}
