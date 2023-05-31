@@ -10,7 +10,7 @@ Set the variables below according to your needs:
 - instance-type
 - keypair-name
 - instance-name
-- authorized-ssh-ip -> [ For security don´t set this in variable default. Instead inform it on terraform plan command ]
+- authorized-ssh-ip -> [ For security don´t set it in variable default. Instead inform on terraform plan command ]
 
 ## Example:
 
@@ -23,7 +23,7 @@ Set the variables below according to your needs:
 
 # outputs
 
-some key fields about infrastructure created will be returned:
+Some key fields about infrastructure created will be returned:
 
 - instance_public_ip
 - main-sg-id
