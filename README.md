@@ -1,21 +1,41 @@
-### terraform-aws-ec2
-instance ec2 creation by terraform
+## terraform-aws-ec2
+create ec2 instance
 
-## TF commands
+# Instruction:
 
-# Plan
-terraform plan -out="tfplan.out"
-# Apply
-terraform apply "tfplan.out"
-# Destroy
-terraform destroy -auto-approve
+Set the variables below according to your needs:
+
+- region
+- ami
+- instance-type
+- keypair-name
+- instance-name
+- authorized-ssh-ip -> [ For security don´t set this in variable default. Instead inform it on terraform plan command ]
+
+## Example:
+
+- region            -> "us-east-1"
+- ami               -> "ami-0715c1897453cabd1"
+- instance-type     -> "t3.micro"
+- keypair-name      -> "devops-keypair"
+- instance-name     -> "devops-portfolio-instance"
+- authorized-ssh-ip -> "123.456.789.100"
 
 # outputs
 
-some key fields will be returned:
+some key fields about infrastructure created will be returned:
 
 - instance_public_ip
 - main-sg-id
 - private-avaiable_zone
-- private-subnet-ids []
+- private-subnet-ids [] -> list(string)
 - vpc-id
+
+# TF commands
+
+## Plan
+terraform plan -out="tfplan.out"
+## Apply
+terraform apply "tfplan.out"
+## Destroy
+terraform destroy -auto-approve
