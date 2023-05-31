@@ -1,4 +1,4 @@
-## terraform-aws-ec2
+# terraform-aws-ec2
 create ec2 instance
 
 # Instruction:
