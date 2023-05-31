@@ -14,6 +14,10 @@ variable "keypair-name" {
   default  = "devops-keypair"
 }
 
+variable "subnet_counts" {
+  default  = 2
+}
+
 variable "instance-name" {
   default  = "devops-portfolio-instance"
 }

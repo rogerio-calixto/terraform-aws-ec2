@@ -25,12 +25,13 @@ resource "aws_subnet" "public-subnet" {
 # private subnet
 
 resource "aws_subnet" "private-subnet" {
-  availability_zone = data.aws_availability_zones.available.names[0]
+  count             = var.subnet_counts
+  availability_zone = data.aws_availability_zones.available.names[count.index]
   vpc_id            = aws_vpc.main-vpc.id
-  cidr_block        = "10.0.2.0/24"
+  cidr_block        = "10.0.${count.index + 2}.0/24"
 
   tags = {
-    Name    = "${var.project}-pvt-01"
+    Name    = "${var.project}-pvt-0${count.index + 1}"
     Project = var.project
   }
 }
@@ -80,6 +81,7 @@ resource "aws_route_table" "rt-prv" {
 }
 
 resource "aws_route_table_association" "rt-association-prv" {
+  count          = var.subnet_counts
   route_table_id = aws_route_table.rt-prv.id
-  subnet_id      = aws_subnet.private-subnet.id
+  subnet_id      = aws_subnet.private-subnet.*.id[count.index]
 }

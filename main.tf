@@ -5,8 +5,9 @@ provider "aws" {
 }
 
 module "network" {
-  source  = "./modules/network"
-  project = local.project
+  source        = "./modules/network"
+  project       = local.project
+  subnet_counts = var.subnet_counts
 }
 
 module "ec2" {
