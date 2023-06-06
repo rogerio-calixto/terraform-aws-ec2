@@ -20,7 +20,7 @@ variable "subnet_counts" {
 }
 
 variable "instance-name" {
-  default  = "devops-portfolio-instance"
+  default  = "portfolio"
 }
 
 variable "authorized-ssh-ip" {}
