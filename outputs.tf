@@ -10,10 +10,14 @@ output "vpc-id" {
   value = module.network.vpc-id
 }
 
-output "private-avaiable_zone" {
-  value = module.network.avaiable_zones[0]
+output "private-avaiable_zones" {
+  value = module.network.avaiable_zones
 }
 
 output "private-subnet-ids" {
    value = module.network.private-subnet-ids
+}
+
+output "public-subnet-ids" {
+   value = module.network.public-subnet-ids
 }

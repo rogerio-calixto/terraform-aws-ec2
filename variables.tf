@@ -16,7 +16,7 @@ variable "keypair-name" {
 }
 
 variable "subnet_counts" {
-  default  = 2
+  default  = 3
 }
 
 variable "instance-name" {
