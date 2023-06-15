@@ -4,30 +4,55 @@ provider "aws" {
   profile = local.aws_profile
 }
 
-# module "network" {
-#   source        = "./modules/network"
-#   project       = local.project
-#   subnet_counts = var.subnet_counts
-# }
+resource "aws_security_group" "sg" {
+  name        = "${var.instance-name}-sg"
+  description = "Enable Inbound ports"
+  vpc_id      = var.vpc-id
 
-#using template
-module "network" {
-  source        = "../terraform-aws-network"
-  project       = local.project
-  region        = var.region
-  subnet_counts = var.subnet_counts
+  ingress {
+    description = "Enable SSH access"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = var.authorized-ssh-ip
+  }
+
+  ingress {
+    description = "Enable HTTP access"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name    = "${var.project}-${var.instance-name}-sg"
+    Project = var.project
+  }
 }
 
+resource "aws_instance" "ec2" {
+  ami                         = var.ami
+  instance_type               = var.instance-type
+  subnet_id                   = var.subnet-id
+  vpc_security_group_ids      = [aws_security_group.sg.id]
+  associate_public_ip_address = true
+  key_name                    = var.keypair-name
+  tags = {
+    Name    = var.instance-name
+    Project = var.project
+  }
 
-module "ec2" {
-  source            = "./modules/ec2"
-  project           = local.project
-  region            = var.region
-  ami               = var.ami
-  instance-type     = var.instance-type
-  instance-name     = var.instance-name
-  keypair-name      = var.keypair-name
-  authorized-ssh-ip = var.authorized-ssh-ip
-  vpc-id            = module.network.vpc-id
-  public-subnet_id  = module.network.public-subnet-ids[0]
+  # EBS root
+  root_block_device {
+    volume_size = 10
+    volume_type = "gp2"
+  }
 }

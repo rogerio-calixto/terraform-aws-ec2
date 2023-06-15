@@ -1,10 +1,12 @@
+variable "project" {
+  default = "tf-ec2"
+}
 variable "region" {
   default = "us-east-1"
 }
 
 variable "ami" {
   default = "ami-053b0d53c279acc90"
-  #  "ami-0715c1897453cabd1"
 }
 
 variable "instance-type" {
@@ -12,15 +14,18 @@ variable "instance-type" {
 }
 
 variable "keypair-name" {
-  default  = "devops-keypair"
-}
-
-variable "subnet_counts" {
-  default  = 3
+  default = "devops-keypair"
 }
 
 variable "instance-name" {
-  default  = "portfolio"
+  default = "portfolio"
 }
 
-variable "authorized-ssh-ip" {}
+variable "authorized-ssh-ip" {
+  type = list(string)
+  default = []
+}
+
+variable "vpc-id" {}
+
+variable "subnet-id" {}
