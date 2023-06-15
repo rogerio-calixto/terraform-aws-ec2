@@ -28,4 +28,8 @@ variable "authorized-ssh-ip" {
 
 variable "vpc-id" {}
 
-variable "subnet-id" {}
+variable "subnet-ids" {}
+
+variable "servers" {
+  default = 1
+}
