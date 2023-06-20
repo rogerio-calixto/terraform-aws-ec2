@@ -33,3 +33,8 @@ variable "subnet-ids" {}
 variable "servers" {
   default = 1
 }
+
+variable "user-data" {
+  type = object
+  default = {}
+}

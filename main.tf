@@ -39,6 +39,7 @@ resource "aws_security_group" "sg" {
 }
 
 resource "aws_instance" "ec2" {
+  user_data                   = var.user-data
   count                       = var.servers
   ami                         = var.ami
   instance_type               = var.instance-type
