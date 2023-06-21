@@ -35,6 +35,5 @@ variable "servers" {
 }
 
 variable "user-data" {
-  type = object
-  default = {}
+  type = any
 }
