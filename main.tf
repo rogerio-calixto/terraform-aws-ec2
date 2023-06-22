@@ -42,6 +42,7 @@ resource "aws_instance" "ec2" {
   user_data                   = var.user-data
   count                       = var.servers
   ami                         = var.ami
+  iam_instance_profile        = var.instance-profile-name
   instance_type               = var.instance-type
   subnet_id                   = var.subnet-ids[count.index]
   vpc_security_group_ids      = [aws_security_group.sg.id]

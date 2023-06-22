@@ -37,3 +37,7 @@ variable "servers" {
 variable "user-data" {
   type = any
 }
+
+variable "instance-profile-name" {
+  type = string
+}
