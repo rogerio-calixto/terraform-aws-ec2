@@ -36,8 +36,10 @@ variable "servers" {
 
 variable "user-data" {
   type = any
+  default = null
 }
 
 variable "instance-profile-name" {
   type = string
+  default = null
 }

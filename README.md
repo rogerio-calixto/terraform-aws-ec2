@@ -8,6 +8,8 @@ Set the variables below according to your needs:
 - project
 - region
 - ami
+- userdata <OPTIONAL>
+- instance-profile-name <OPTIONAL>
 - instance-type
 - keypair-name
 - instance-name
